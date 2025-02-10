@@ -6,7 +6,7 @@ class Logchange < Formula
 
   if OS.linux? && Hardware::CPU.intel?
     url "https://github.com/logchange/logchange/releases/download/#{version}/logchange-linuxx64.zip"
-    sha256 "409df1a137ee2461ec8636d2377e64478df6fa3b53bc85c942ce7bcf3852a031"
+    sha256 "40f71b7c799b8b7d80976dd17c6262bfce3c24ab85a8c81c16b011537316b40f"
   end
   if OS.mac? && Hardware::CPU.arm?
     url "https://github.com/logchange/logchange/releases/download/#{version}/logchange-darwinarm64.zip"
