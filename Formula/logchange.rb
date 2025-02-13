@@ -1,35 +1,35 @@
 class Logchange < Formula
-  desc "CLI tool for managing markdown changelogs"
+  desc "CLI tool for managing and generating CHANGELOG.md"
   homepage "https://github.com/logchange/logchange"
+  version "1.16.8"
   license "Apache-2.0"
 
   if OS.linux? && Hardware::CPU.intel?
-    url "https://github.com/logchange/logchange/releases/download/1.16.7/logchange-linuxx64.zip"
-    sha256 "409df1a137ee2461ec8636d2377e64478df6fa3b53bc85c942ce7bcf3852a031"
-    def install
-      libexec.install Dir["*"]
-      chmod 0755, "#{libexec}/logchange-linuxx64/logchange"
-      bin.write_exec_script "#{libexec}/logchange-linuxx64/logchange"
-    end
+    url "https://github.com/logchange/logchange/releases/download/#{version}/logchange-linuxx64.zip"
+    sha256 "40f71b7c799b8b7d80976dd17c6262bfce3c24ab85a8c81c16b011537316b40f"
   end
-
   if OS.mac? && Hardware::CPU.arm?
-    url "https://github.com/logchange/logchange/releases/download/1.16.7/logchange-darwinarm64.zip"
-    sha256 "9a0cdd9714f18777a17b233c2acfbfd32c0a6ef99a0730a81576668cc559fd3b"
-    def install
-      libexec.install Dir["*"]
-      chmod 0755, "#{libexec}/logchange-darwinarm64/logchange"
-      bin.write_exec_script "#{libexec}/logchange-darwinarm64/logchange"
-    end
+    url "https://github.com/logchange/logchange/releases/download/#{version}/logchange-darwinarm64.zip"
+    sha256 "5f6583fb29c025806d6d5496cec360f3364c40ddb7764f7cb1f0967d1275b4e0"
+  end
+  if OS.mac? && Hardware::CPU.intel?
+    url "https://github.com/logchange/logchange/releases/download/#{version}/logchange-darwinx64.zip"
+    sha256 "7cc67b0b4f7b90098c78e163bce03825f2edcc76e85fcb3586e951754a7265ad"
   end
 
-  if OS.mac? && Hardware::CPU.intel?
-    url "https://github.com/logchange/logchange/releases/download/1.16.7/logchange-darwinx64.zip"
-    sha256 "f363c98d6387aaaa1c4e8ddce0813e1214a13515218e0fa7f5eca3c0a2cbefc8"
-    def install
-      libexec.install Dir["*"]
-      chmod 0755, "#{libexec}/logchange-darwinx64/logchange"
-      bin.write_exec_script "#{libexec}/logchange-darwinx64/logchange"
+  def install
+    libexec.install Dir["*"]
+    os_arch = ""
+    if OS.linux? && Hardware::CPU.intel?
+      os_arch = "linuxx64"
+    elsif OS.mac? && Hardware::CPU.arm?
+      os_arch = "darwinarm64"
+    elsif OS.mac? && Hardware::CPU.intel?
+      os_arch = "darwinx64"
+    else
+      puts "Unsupported system or architecture!"
     end
+    chmod 0755, "#{libexec}/logchange-#{os_arch}/logchange"
+    bin.write_exec_script "#{libexec}/logchange-#{os_arch}/logchange"
   end
 end

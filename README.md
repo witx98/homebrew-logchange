@@ -1,18 +1,31 @@
-# Witx98 Logchange
+# Logchange Homebrew Tap
 
-## How do I install these formulae?
+## Formulae installation
 
-`brew install witx98/logchange/<formula>`
+To install invoke either of the following commands:
 
-Or `brew tap witx98/logchange` and then `brew install <formula>`.
-
-Or, in a [`brew bundle`](https://github.com/Homebrew/homebrew-bundle) `Brewfile`:
-
-```ruby
-tap "witx98/logchange"
-brew "<formula>"
+```sh
+brew install logchange/tap/logchange
 ```
 
+Or
+
+```sh
+brew tap logchange/tap
+brew install logchange
+```
+
+## Formulae update
+
+To update your logchange formula invoke following command:
+
+```sh
+brew upgrade logchange
+```
+
+
 ## Documentation
+
+Check out [Logchange's documentation]()
 
 `brew help`, `man brew` or check [Homebrew's documentation](https://docs.brew.sh).
